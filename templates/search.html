@@ -61,9 +61,9 @@
     </form>
     <p>书名 出版社 年份 作者 价格 总量 库存</p>
     {% for b in books %}
-     <p> {{ b.title }} {{b.press}} {{b.year}} {{b.author}}{{b.price}} {{b.total}} {{b.stock}}</p> 
-     <button id="borrow">借书</button>
+     <p> {{ b.title }} {{b.press}} {{b.year}} {{b.author}}{{b.price}} {{b.total}} {{b.stock}} <button id="borrow">借书</button></p> 
     {% endfor %}
 </body>
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
     <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 </html>

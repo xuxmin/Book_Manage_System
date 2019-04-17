@@ -2,9 +2,9 @@ from flask import (
     Flask,
     flash,
     render_template,
-    request,    # local 对象??
+    request,
     redirect,
-    session,    # 类似request
+    session,
     url_for,
     Blueprint,
     make_response,
@@ -26,7 +26,7 @@ app.register_blueprint(search_routes, url_prefix="/search")
 
 if __name__ == '__main__':
     config = dict(
-        debug=True,     # 注意这个发生错误时会显示在页面上
+        debug=True,
         host='0.0.0.0',
         port=3000,
     )
