@@ -1,0 +1,15 @@
+09:14:18 found model: User
+09:14:18   found mapping: id ==> <IntegerField, bigint:id>
+09:14:18   found mapping: name ==> <VarcharField, Varchar(256):username>
+09:14:18   found mapping: email ==> <VarcharField, Varchar(256):email>
+09:14:18   found mapping: password ==> <VarcharField, Varchar(256):password>
+09:18:28 found model: User
+09:18:28   found mapping: id ==> <IntegerField, bigint:id>
+09:18:28   found mapping: name ==> <VarcharField, Varchar(256):username>
+09:18:28   found mapping: email ==> <VarcharField, Varchar(256):email>
+09:18:28   found mapping: password ==> <VarcharField, Varchar(256):password>
+09:18:58 found model: User
+09:18:58   found mapping: id ==> <IntegerField, bigint:id>
+09:18:58   found mapping: name ==> <VarcharField, Varchar(256):username>
+09:18:58   found mapping: email ==> <VarcharField, Varchar(256):email>
+09:18:58   found mapping: password ==> <VarcharField, Varchar(256):password>

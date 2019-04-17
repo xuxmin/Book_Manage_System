@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+    <p> hello {{ username }}!</p>
+    <form method="get" action={{ url_for(".log_out") }}>
+        <button type="submit">退出登录</button>
+    </form>
+    {% for b in books %}
+    <p> {{ b.title }} {{b.press}} {{b.year}} {{b.author}} {{b.price}} {{b.total}} {{b.stock}} </p> 
+    {% endfor %}
+
+    {{ card }}
+    <form method="POST" action={{ url_for(".apply_card")}}>
+        <text>真实姓名</text>
+        <input name="name">
+        <br>
+        <text>所在学院</text>
+        <input name="dept">
+        <br>
+        <text>类别(T/S)</text>
+        <input name="type">
+        <br>
+        <button type="submit">申请借书证</button>
+    </form>
+</body>
+</html>

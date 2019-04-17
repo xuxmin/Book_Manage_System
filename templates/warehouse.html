@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+    <form method="post" action="{{ url_for('.add') }}">
+        <text>书名:</text>
+        <input name="title">
+        <br>
+        <text>出版社:</text>
+        <input name="press">
+        <br>
+        <text>年份:</text>
+        <input name="year">     
+        <br>
+        <text>作者:</text>        
+        <input name="author">
+        <br>
+        <text>价格:</text>        
+        <input name="price">
+        <br>
+        <text>库存:</text>   
+        <input name="total">
+        <br>    
+        <button type="submit">入库</button>
+    </form>
+</body>
+</html>
+
+<!-- title = StringField(ddl='varchar(50)')
+press = StringField(ddl='varchar(50)')
+year = IntegerField()
+author = StringField(ddl='varchar(50)')
+price = FloatField(ddl='real')
+total = IntegerField()
+stock = IntegerField() -->
