@@ -8,6 +8,9 @@ from .mysql_orm import(
 import time
 
 from models import next_id
+from models.borrow import Borrow
+from models.book import Book
+from utils import log
 
 
 class User(Model):
@@ -31,6 +34,7 @@ class User(Model):
 
     def salted_password(self, password, salt='$!@><?>HUI&DWQa`'):
         import hashlib
+
         def sha256(ascii_str):
             return hashlib.sha256(ascii_str.encode('ascii')).hexdigest()
 
@@ -58,16 +62,52 @@ class User(Model):
     def validate_login(cls, form):
         u = User()
         u.from_form(form)
-        print('u:', u.password)
+        log('u:', u.password)
         user = User.find_one(username=u.username)
-        print('user:', user)
+        log('user:', user)
         if user is not None and user.password == u.salted_password(u.password):
             return user
         else:
             return None
-    
+
     def has_card(self):
         if self.card_id == '' or self.card_id == 'None':
             return False
         else:
             return True
+
+    def borrow_record(self):
+        """
+        返回用户的借书记录，格式为：书名，借阅时间，归还时间，是否归还
+        """
+        card_id = self.card_id
+        infos = []
+        bs = Borrow.find_all(card_id=card_id)
+        for b in bs:
+            info = {}
+            print(b)
+            book = Book.find_one(id=b.book_id)
+            info['book'] = book.title
+            info['bt'] = time.strftime(
+                "%Y-%m-%d %H:%M:%S", time.localtime(b.borrow_date))
+            if b.return_date is None:
+                info['rt'] = ""
+            else:
+                info['rt'] = time.strftime(
+                    "%Y-%m-%d %H:%M:%S", time.localtime(b.return_date))
+            info['de'] = b.deleted
+            infos.append(info)
+        log("infos:", infos)
+        return infos
+
+    def borrowed_books(self):
+        """
+        返回用户借阅的所有书
+        """
+        borrows = Borrow.find_all(card_id=self.card_id, deleted=False)
+
+        books = []
+        for b in borrows:
+            book = Book.find_one(id=b.book_id)
+            books.append(book)
+        return books

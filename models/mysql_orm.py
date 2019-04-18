@@ -1,5 +1,6 @@
 import mysql.connector
 
+from utils import log
 
 def create_conn(**kw):
     """
@@ -19,7 +20,7 @@ def select(sql, args, size=None):
     """
     执行 select 语句, size 为返回的查询到的元素的数量
     """
-    print("当前执行的sql语句:", sql, args)
+    log("当前执行的sql语句:", sql, args)
     conn = create_conn()
     cur = conn.cursor()
 
@@ -31,11 +32,12 @@ def select(sql, args, size=None):
         else:
             rs = cur.fetchall()
     except:
-        print("QUERY Error: unable to fecth data")
+        log("QUERY Error: unable to fecth data")
+        raise Exception("SQL SELECT ERROR")
 
     cur.close()
     conn.close()
-    print('rows returned: {}'.format(len(rs)))
+    log('rows returned: {}'.format(len(rs)))
     return rs
 
 
@@ -43,7 +45,7 @@ def execute(sql, args):
     """
     执行INSERT、UPDATE、DELETE语句
     """
-    print("当前执行的sql语句:", sql, args)
+    log("当前执行的sql语句:", sql, args)
     conn = create_conn()
     cur = conn.cursor()
 
@@ -56,11 +58,12 @@ def execute(sql, args):
     except:
         # 出现错误就回滚
         conn.rollback()
-        print("SQL Execute ERROR")
-
-    cur.close()
-    conn.close()
-    return affected
+        log("SQL Execute ERROR")
+        raise Exception("SQL Execute ERROR: {}".format(sql))
+    finally:
+        cur.close()
+        conn.close()
+        return affected
 
 
 def create_args_string(num):
@@ -117,7 +120,7 @@ class ModelMetaclass(type):
 
         # 默认表名为类名
         tableName = attrs.get('__table__', None) or name
-        print('found model: {} (table: {})'.format(name, tableName))
+        log('found model: {} (table: {})'.format(name, tableName))
 
         # object 属性与列的关系映射
         mappings = dict()
@@ -129,7 +132,7 @@ class ModelMetaclass(type):
         # 遍历类属性, 仅将 Field 类中定义的属性保存起来
         for k, v in attrs.items():
             if isinstance(v, Field):        # 判读当前的字段类型是否是在Field子类中已定义的
-                print('  found mapping: {} ==> {}'.format(k, v))
+                log('  found mapping: {} ==> {}'.format(k, v))
                 # 将类属性和列的映射关系保存到字典
                 mappings[k] = v
                 if v.primary_key:
@@ -177,7 +180,7 @@ class Model(dict, metaclass=ModelMetaclass):
             field = self.__mappings__[key]
             if field.default is not None:
                 value = field.default() if callable(field.default) else field.default
-                print('using default value for {}: {}'.format(key, str(value)))
+                log('using default value for {}: {}'.format(key, str(value)))
                 setattr(self, key, value)
         return value
 
@@ -250,7 +253,7 @@ class Model(dict, metaclass=ModelMetaclass):
             if id == 0:
                 where += k + '=' + '?'
             else:
-                where += ',' + k + '=' + '?'
+                where += ' and ' + k + '=' + '?'
             args.append(kwargs[k])
         if where != '':
             sql.append('where')
@@ -292,7 +295,7 @@ class Model(dict, metaclass=ModelMetaclass):
         args.append(self.getValueOrDefault(self.__primary_key__))
         rows = execute(self.__insert__, args)
         if rows != 1:
-            print('failed to insert record: affected rows: {}'.format(rows))
+            log('failed to insert record: affected rows: {}'.format(rows))
 
     def update(self):
         """
@@ -302,7 +305,7 @@ class Model(dict, metaclass=ModelMetaclass):
         args.append(self.getValue(self.__primary_key__))
         rows = execute(self.__update__, args)
         if rows != 1:
-            print('failed to update by primary key: affected rows: {}'.format(rows))
+            log('failed to update by primary key: affected rows: {}'.format(rows))
 
     def remove(self):
         """
@@ -311,4 +314,4 @@ class Model(dict, metaclass=ModelMetaclass):
         args = [self.getValue(self.__primary_key__)]
         rows = execute(self.__delete__, args)
         if rows != 1:
-            print('failed to remove by primary key: affected rows: {}'.format(rows))
+            log('failed to remove by primary key: affected rows: {}'.format(rows))

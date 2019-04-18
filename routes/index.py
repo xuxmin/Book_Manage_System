@@ -1,16 +1,19 @@
 from flask import (
     render_template,
-    request,    # local 对象??
+    request,
     redirect,
-    session,    # 类似request
+    session,
     url_for,
     Blueprint,
     make_response,
     abort,
+    jsonify,
 )
-
+import json
 from models.user import User
 from models.card import Card
+from models.borrow import Borrow
+from models.book import Book
 from routes import current_user
 
 from utils import log
@@ -22,12 +25,12 @@ main = Blueprint('index', __name__)
 def index():
     u = current_user()
     if u is None:
-        return render_template('index_login.html', username="游客")
+        return render_template('index_login.html', user="游客")
     else:
         if u.has_card():
-            return render_template('index_user.html', username=u, card="已拥有借书证")
+            return render_template('index_user.html', user=u, card="已拥有借书证")
         else:
-            return render_template('index_user.html', username=u, card="未拥有借书证")
+            return render_template('index_user.html', user=u, card="未拥有借书证")
 
 
 @main.route("/register", methods=['POST'])
@@ -64,6 +67,42 @@ def apply_card():
     return redirect(url_for(".index"))
 
 
-# @main.route("/api/borrow", methods=['POST'])
-# def borrow():
-    
+@main.route("/api/borrow", methods=["POST"])
+def borrow():
+    u = current_user()
+    if u is None or u.card_id is None:
+        abort(403)
+    else:
+        # 获取post上来的json数据
+        title = json.loads(request.get_data())
+        log("用户({})尝试借阅书籍({}):".format(u.username, title))
+        if Borrow.borrow_book(title, u) == 1:
+            book = Book.find_one(title=title)
+            return jsonify({"stock": book.stock})
+        else:
+            return jsonify({"stock": '-1'})
+
+
+@main.route("/api/return", methods=["POST"])
+def return_book():
+    u = current_user()
+    if u is None:
+        abort(403)
+    else:
+        # 获取post上来的json数据
+        title = json.loads(request.get_data())
+        log("用户({})尝试归还书籍({}):".format(u.username, title))
+
+        if Borrow.return_book(title, u) == 1:
+            return jsonify({"deleted": 1})
+        else:
+            return jsonify({"deleted": 0})
+
+@main.route("/api/borrowed_books", methods=["POST"])
+def borrowed_books():
+    u = current_user()
+    books = u.borrowed_books()
+    bs = []
+    for b in books:
+        bs.append(b.title)
+    return jsonify(bs)

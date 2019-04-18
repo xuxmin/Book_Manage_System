@@ -20,7 +20,7 @@ main = Blueprint('warehouse', __name__)
 @main.route("/")
 def index():
     u = current_user()
-    print("当前用户:", u)
+    log("当前用户:", u)
     if u.role == 1:
         return render_template("warehouse.html")
     else:
@@ -33,6 +33,6 @@ def add():
     book = Book()
     book.from_form(form)
     if Book.has_book(book.title) is False:
-        print("save to database")
+        log("save to database")
         book.save()
     return redirect(url_for('.index'))

@@ -1,9 +1,27 @@
-
-
 var log = function() {
     console.log.apply(console, arguments)
 }
 
+Date.prototype.format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
+}
 var e = function(sel) {
     return document.querySelector(sel)
 }
@@ -39,11 +57,25 @@ var ajax = function(method, path, data, responseCallback) {
 }
 
 
-// 向服务器发送训练请求
-var apiTrain = function(form, callback) {
+// 向服务器发送借阅请求
+var apiBorrow = function(form, callback) {
     var path = '/api/borrow'
     // 在 ajax 完成之后，才会调用函数 callback
     // 回调函数在 ajax 中传入的参数是 r.response
+    ajax('POST', path, form, callback)
+}
+
+var apiReturn = function (form, callback) {
+    var path = '/api/return'
+    // 在 ajax 完成之后，才会调用函数 callback
+    // 回调函数在 ajax 中传入的参数是 r.response
+    ajax('POST', path, form, callback)
+}
+
+// 向服务器发送请求获得用户已借阅的书籍
+
+var apiBorrowedBook = function (form, callback) {
+    var path = '/api/borrowed_books'
     ajax('POST', path, form, callback)
 }
 

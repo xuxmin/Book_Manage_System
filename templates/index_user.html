@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>主页</title>
 </head>
+
 <body>
-    <p> hello {{ username }}!</p>
+    <p> hello {{ user }}!</p>
     <form method="get" action={{ url_for(".log_out") }}>
         <button type="submit">退出登录</button>
     </form>
     {% for b in books %}
-    <p> {{ b.title }} {{b.press}} {{b.year}} {{b.author}} {{b.price}} {{b.total}} {{b.stock}} </p> 
+    <p> {{ b.title }} {{b.press}} {{b.year}} {{b.author}} {{b.price}} {{b.total}} {{b.stock}} </p>
     {% endfor %}
 
     {{ card }}
@@ -26,5 +28,25 @@
         <br>
         <button type="submit">申请借书证</button>
     </form>
+
+    <p>已借阅书籍</p>
+    <table id="book-list">
+        <tr>
+            <th>书名</th>
+            <th>借阅时间</th>
+            <th>归还时间</th>
+        </tr>
+        {% for info in user.borrow_record() %}
+        <tr>
+            <td>{{ info['book'] }}</td>
+            <td>{{ info['bt'] }}</td>
+            <td>{{ info['rt'] }}</td>
+            <td><button class="return" value="{{ info['de'] }}">还书</button></td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
+<script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+<script src="{{ url_for('static', filename='js/user.js') }}"></script>
+
 </html>
