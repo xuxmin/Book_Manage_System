@@ -45,9 +45,10 @@ var ajax = function(method, path, data, responseCallback) {
     r.setRequestHeader('Content-Type', 'application/json')
     // 注册响应函数
     r.onreadystatechange = function() {
+        log("r: ", r)
         if(r.readyState === 4) {
             // r.response 存的就是服务器发过来的放在 HTTP BODY 中的数据
-            responseCallback(r.response)
+            responseCallback(r.status, r.response)
         }
     }
     // 把数据转换为 json 格式字符串
@@ -79,6 +80,15 @@ var apiBorrowedBook = function (form, callback) {
     ajax('POST', path, form, callback)
 }
 
+var apiRegister = function (form, callback) {
+    var path = '/api/register'
+    ajax('POST', path, form, callback)
+}
+
+var apiLogin = function (form, callback) {
+    var path = '/api/authenticate'
+    ajax('POST', path, form, callback)
+}
 
 
 

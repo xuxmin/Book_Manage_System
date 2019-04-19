@@ -4,7 +4,23 @@
 
 {% block content %}
 
+<label>借书证号: </label>
+<div id='id-card'>{{card_id}}</div>
+<div class="uk-container uk-container-center">
+    <form class="uk-form" method="POST" action="find">
+        <fieldset data-uk-margin>
+            <label class="uk-text-bold">通过书名模糊搜索书籍</label>
+            <input type="text" placeholder="">
+            <button class="uk-button">search</button>
+        </fieldset>
+    </form>
+</div>
+
+
+<br>
+<br>
 <div class="uk-width-medium-4-4">
+    <label class="uk-text-bold uk-text-large">搜索结果</label>
     <table id="book-list" class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
         <tr>
             <th>书名</th>
@@ -14,6 +30,7 @@
             <th>价格</th>
             <th>总量</th>
             <th>库存</th>
+            <th>借阅</th>
         </tr>
         {% for b in books %}
         <tr>
@@ -24,10 +41,14 @@
             <td>{{ b.price }}</td>
             <td>{{ b.total }}</td>
             <td>{{ b.stock }}</td>
-            <td><button class="borrow">借书</button></td>
+            <td><button class="uk-button-success borrow" name="borrow">借书</button></td>
         </tr>
         {% endfor %}
     </table>
 </div>
 
+{% endblock %}
+
+{% block beforebody %}
+<script src="../static/js/index.js"></script>
 {% endblock %}

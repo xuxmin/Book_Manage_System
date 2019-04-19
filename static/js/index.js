@@ -4,10 +4,6 @@ var bindEventPointClick = function () {
     var card = e('#id-card')
     var card_id = card.textContent
 
-    if (card_id == "None"){
-        alert("申请借书证后才能开始借书")
-    }
-        
     bookList.addEventListener('click', function (event) {
         if (card_id == "None") {
             alert("您没有借书证哦")
@@ -17,7 +13,7 @@ var bindEventPointClick = function () {
         var b = event.target
         log('event.target', b)
 
-        if (b.className != 'borrow')
+        if (b.textContent != '借书')
             return
 
         // 获取该节点的父节点
@@ -28,7 +24,7 @@ var bindEventPointClick = function () {
         var stock = book.lastElementChild.previousElementSibling
 
         // 利用borrow book api 发送请求, 
-        apiBorrow(title, function (r) {
+        apiBorrow(title, function (status, r) {
             log('r: ', r)
             var o = JSON.parse(r)
             log("o:", o)
@@ -39,25 +35,34 @@ var bindEventPointClick = function () {
                 b.textContent = "已借阅"
                 stock.textContent = o.stock
                 b.disabled = "disabled"
+                bts[i].className = "uk-button-primary borrow"
             }
         })
     })
 }
 
 var bindButton = function () {
+    var card = e('#id-card')
+    var card_id = card.textContent
+    if (card_id == "None") {
+        return
+    }
     var form = ""
-    apiBorrowedBook(form, function (r) {
+    apiBorrowedBook(form, function (status, r) {
         log('r: ', r)
         var o = JSON.parse(r)
         log("o:", o)
         var bts = document.getElementsByClassName("borrow")
-
+        log("bts:", bts)
         for (var i = 0; i < bts.length; i++) {
             title = bts[i].parentElement.parentElement.firstElementChild
+            log("title.textContent", title.textContent)
             if (o.indexOf(title.textContent) > -1) {
+                log("bts[i]", bts[i])
                 bts[i].textContent = "已借阅"
                 bts[i].disabled = "disabled"
-            } 
+                bts[i].className = "uk-button-primary borrow"
+            }
         }
     })
 

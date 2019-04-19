@@ -5,7 +5,7 @@ var bindEventPointClick = function () {
         // 我们可以通过 event.target 来得到被点击的元素
         var b = event.target
         log('event.target', b)
-        if (b.className != 'return')
+        if (b.textContent != '还书')
             return
         // 获取该节点的父节点
         var book = b.parentNode.parentNode
@@ -14,7 +14,7 @@ var bindEventPointClick = function () {
         var title = book.firstElementChild.textContent
 
         // 利用return book api 发送请求, 
-        apiReturn(title, function (r) {
+        apiReturn(title, function (status, r) {
             log('r: ', r)
             var o = JSON.parse(r)
             log("o:", o)

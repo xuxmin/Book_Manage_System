@@ -25,49 +25,39 @@ main = Blueprint('index', __name__)
 @main.route("/")
 def index():
     u = current_user()
-    if u is None:
-        return render_template('index_login.html', user="游客")
-    else:
-        if u.has_card():
-            return render_template('index_user.html', user=u, card="已拥有借书证")
-        else:
-            return render_template('index_user.html', user=u, card="未拥有借书证")
-
-
-@main.route("/index", methods=['GET'])
-def index2():
-    u = current_user()
     log("当前用户:", u)
+    books = Book.find_all()
     if u is None:
-        abort(403)
+        card_id = "None"
     else:
-        books = Book.find_all()
-        return render_template('index.html', user=u, books=books, card_id=u.card_id)
+        card_id = u.card_id
+    return render_template('index.html', user=u, books=books, card_id=card_id)
 
 
-@main.route("/register", methods=['POST'])
+@main.route("/register", methods=['GET'])
 def register():
-    form = request.form
-    u = User.register(form)
-    return redirect(url_for('.index'))
+    return render_template("register.html")
 
 
-@main.route("/login", methods=['POST'])
+@main.route("/login", methods=['GET'])
 def login():
-    form = request.form
-    u = User.validate_login(form)
-    if u is None:
-        return redirect(url_for('.index'))
-    else:
-        session['user_id'] = u.id
-        session.permanent = True
-        return redirect(url_for('.index'))
+    return render_template("login.html")
 
 
 @main.route("/logout", methods=['get'])
 def log_out():
     session.pop("user_id")
     return redirect(url_for(".index"))
+
+
+@main.route("/profile", methods=['GET'])
+def profile():
+    u = current_user()
+    if u is None:
+        return abort(403)
+    else:
+        return render_template("profile.html", user=u)
+
 
 @main.route("/apply", methods=['POST'])
 def apply_card():

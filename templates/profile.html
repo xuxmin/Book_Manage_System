@@ -1,0 +1,72 @@
+{% extends '__base__.html' %}
+
+{% block title %}个人中心{% endblock %}
+
+{% block content %}
+
+
+<div class="uk-grid ">
+    <div class="uk-width-medium-2-5" >
+        <div class="uk-panel">
+            <h3 class="uk-panel-title"> {{ user.username }} </h3>
+            <br>
+            <h3 class="uk-panel-title">注册日期</h3>
+            <p>{{ user.ct() }}</p>
+        </div>
+        <div class="uk-panel">
+            {% if user.card_id != "None" %}
+            <h3 class="uk-panel-title">已拥有借书证</h3>
+            <h4>Card_id:</h4>
+            <p class="uk-text-break"> {{ user.card_id }} </p>
+            {% else %}
+            <h4 class="">您还没有借书证, 通过下面申请</h4>
+            <form class="uk-form" method="POST" action={{ url_for(".apply_card")}}>
+                <text>真实姓名</text>
+                <input name="name">
+                <br>
+                <text>所在学院</text>
+                <input name="dept">
+                <br>
+                <text>类别(T/S)</text>
+                <input name="type">
+                <br>
+                <button class="uk-button" type="submit">申请借书证</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="uk-width-medium-3-5">
+        <div class="uk-panel uk-panel-space">
+            <div class="uk-panel-header">
+                <h3>已借阅书籍</h3>
+            </div>
+                <table id="book-list" class="uk-table uk-table-striped">
+                    <tr>
+                        <th>书名</th>
+                        <th>借阅时间</th>
+                        <th>归还时间</th>
+                        <th>归还</th>
+                    </tr>
+                    {% for info in user.borrow_record() %}
+                    <tr>
+                        <td class="uk-width-2-10">{{ info['book'] }}</td>
+                        <td class="uk-width-3-10">{{ info['bt'] }}</td>
+                        <td class="uk-width-3-10">{{ info['rt'] }}</td>
+                        <td class="uk-width-2-10"><button class="uk-button return" value="{{ info['de'] }}">还书</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block beforebody %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock %}
+
+</html>

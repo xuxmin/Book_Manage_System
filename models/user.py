@@ -6,6 +6,7 @@ from .mysql_orm import(
     IntegerField,
 )
 import time
+import re
 
 from models import next_id
 from models.borrow import Borrow
@@ -45,18 +46,26 @@ class User(Model):
     @classmethod
     def register(cls, form):
         name = form.get('username', '')
+        if not name or not name.strip():
+            raise ValueError('username format')
+
         pwd = form.get('password', '')
-        if len(name) > 2 and User.find_one(username=name) is None:
-            # 创建一个User对象
-            u = User()
-            # 根据form生成属性值
-            u.from_form(form)
-            u.password = u.salted_password(pwd)
-            # 将对象保存到数据库中
-            u.save()
-            return u
-        else:
-            return None
+        if not pwd :
+            raise ValueError('passwd format')
+
+        u = User.find_all(username=name)
+
+        if len(u) > 0:
+            raise ValueError('username has been used')
+
+        # 创建一个User对象
+        u = User()
+        # 根据form生成属性值
+        u.from_form(form)
+        u.password = u.salted_password(pwd)
+        # 将对象保存到数据库中
+        u.save()
+        return u
 
     @classmethod
     def validate_login(cls, form):
@@ -65,10 +74,15 @@ class User(Model):
         log('u:', u.password)
         user = User.find_one(username=u.username)
         log('user:', user)
-        if user is not None and user.password == u.salted_password(u.password):
-            return user
-        else:
-            return None
+
+        if user is None:
+            raise ValueError("user is not found")
+        
+        if user.password != u.salted_password(u.password):
+            raise ValueError("password is wrong")
+
+        return user
+
 
     def has_card(self):
         if self.card_id == '' or self.card_id == 'None':
@@ -111,3 +125,7 @@ class User(Model):
             book = Book.find_one(id=b.book_id)
             books.append(book)
         return books
+
+    def ct(self):
+        return time.strftime(
+            "%Y-%m-%d %H:%M:%S", time.localtime(self.created_time))

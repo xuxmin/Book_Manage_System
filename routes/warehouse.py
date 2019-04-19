@@ -22,7 +22,7 @@ def index():
     u = current_user()
     log("当前用户:", u)
     if u.role == 1:
-        return render_template("warehouse.html")
+        return render_template("warehouse.html", user=u)
     else:
         abort(403)
 

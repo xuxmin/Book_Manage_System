@@ -39,6 +39,9 @@ class Borrow(Model):
         if book is not None and book.in_stock():
             log("Borrow: {}有库存".format(title))
             new_borrow = Borrow()
+            if user.card_id == "None":
+                log("该用户没有借书证")
+                return 0
             new_borrow.card_id = user.card_id
             new_borrow.book_id = book.id
             new_borrow.return_date = None

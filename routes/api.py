@@ -8,7 +8,6 @@ from flask import (
     make_response,
     abort,
     jsonify,
-    g,
 )
 import json
 from models.user import User
@@ -16,6 +15,7 @@ from models.card import Card
 from models.borrow import Borrow
 from models.book import Book
 from routes import current_user
+from models.apiError import APIValueError
 
 from utils import log
 
@@ -62,3 +62,32 @@ def borrowed_books():
     for b in books:
         bs.append(b.title)
     return jsonify(bs)
+
+
+@main.route('/authenticate', methods=["POST"])
+def authenticate():
+    form = json.loads(request.get_data())
+    user = form.get("username", "")
+    pwd = form.get("password", "")
+
+    if not user:
+        raise APIValueError('Invalid username.')
+    if not pwd:
+        raise APIValueError('Invalid password.')
+    form = {}
+    form['username'] = user
+    form['password'] = pwd
+
+    print("form:", form)
+    try:
+        u = User.validate_login(form)
+    except Exception as res:
+        raise APIValueError(res)
+
+    if len(u) == 0:
+        raise APIValueError("login error")
+
+    # authenticate ok, set cookie:
+    session['user_id'] = u.id
+    session.permanent = True
+    return jsonify(u)
