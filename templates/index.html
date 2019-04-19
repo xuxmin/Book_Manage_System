@@ -1,0 +1,33 @@
+{% extends '__base__.html' %}
+
+{% block title %}日志{% endblock %}
+
+{% block content %}
+
+<div class="uk-width-medium-4-4">
+    <table id="book-list" class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+        <tr>
+            <th>书名</th>
+            <th>出版社</th>
+            <th>年份</th>
+            <th>作者</th>
+            <th>价格</th>
+            <th>总量</th>
+            <th>库存</th>
+        </tr>
+        {% for b in books %}
+        <tr>
+            <td>{{ b.title }}</td>
+            <td>{{ b.press }}</td>
+            <td>{{ b.year }}</td>
+            <td>{{ b.author }}</td>
+            <td>{{ b.price }}</td>
+            <td>{{ b.total }}</td>
+            <td>{{ b.stock }}</td>
+            <td><button class="borrow">借书</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

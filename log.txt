@@ -1,0 +1,327 @@
+11:35:22 found model: Book (table: book)
+11:35:22   found mapping: id ==> <StringField, varchar(50):None>
+11:35:22   found mapping: title ==> <StringField, varchar(50):None>
+11:35:22   found mapping: press ==> <StringField, varchar(50):None>
+11:35:22   found mapping: year ==> <IntegerField, bigint:None>
+11:35:22   found mapping: author ==> <StringField, varchar(50):None>
+11:35:22   found mapping: price ==> <FloatField, real:None>
+11:35:22   found mapping: total ==> <IntegerField, bigint:None>
+11:35:22   found mapping: stock ==> <IntegerField, bigint:None>
+11:35:22 found model: Borrow (table: borrow)
+11:35:22   found mapping: id ==> <StringField, varchar(50):None>
+11:35:22   found mapping: card_id ==> <StringField, varchar(50):None>
+11:35:22   found mapping: book_id ==> <StringField, varchar(50:None>
+11:35:22   found mapping: admin_id ==> <StringField, vaarchar(50):None>
+11:35:22   found mapping: borrow_date ==> <FloatField, numeric(10,2):None>
+11:35:22   found mapping: return_date ==> <FloatField, numeric(10,2):None>
+11:35:22   found mapping: deleted ==> <BooleanField, boolean:None>
+11:35:22 found model: User (table: user)
+11:35:22   found mapping: id ==> <StringField, varchar(50):None>
+11:35:22   found mapping: email ==> <StringField, varchar(50):None>
+11:35:22   found mapping: password ==> <StringField, varchar(65):None>
+11:35:22   found mapping: role ==> <IntegerField, bigint:None>
+11:35:22   found mapping: username ==> <StringField, varchar(50):None>
+11:35:22   found mapping: created_time ==> <FloatField, numeric(10,2):None>
+11:35:22   found mapping: card_id ==> <StringField, varchar(50):None>
+11:35:22 found model: Card (table: card)
+11:35:22   found mapping: id ==> <StringField, varchar(50):None>
+11:35:22   found mapping: name ==> <StringField, varchar(50):None>
+11:35:22   found mapping: dept ==> <StringField, varchar(50):None>
+11:35:22   found mapping: type ==> <StringField, varchar(1):None>
+11:35:23 found model: Book (table: book)
+11:35:23   found mapping: id ==> <StringField, varchar(50):None>
+11:35:23   found mapping: title ==> <StringField, varchar(50):None>
+11:35:23   found mapping: press ==> <StringField, varchar(50):None>
+11:35:23   found mapping: year ==> <IntegerField, bigint:None>
+11:35:23   found mapping: author ==> <StringField, varchar(50):None>
+11:35:23   found mapping: price ==> <FloatField, real:None>
+11:35:23   found mapping: total ==> <IntegerField, bigint:None>
+11:35:23   found mapping: stock ==> <IntegerField, bigint:None>
+11:35:23 found model: Borrow (table: borrow)
+11:35:23   found mapping: id ==> <StringField, varchar(50):None>
+11:35:23   found mapping: card_id ==> <StringField, varchar(50):None>
+11:35:23   found mapping: book_id ==> <StringField, varchar(50:None>
+11:35:23   found mapping: admin_id ==> <StringField, vaarchar(50):None>
+11:35:23   found mapping: borrow_date ==> <FloatField, numeric(10,2):None>
+11:35:23   found mapping: return_date ==> <FloatField, numeric(10,2):None>
+11:35:23   found mapping: deleted ==> <BooleanField, boolean:None>
+11:35:23 found model: User (table: user)
+11:35:23   found mapping: id ==> <StringField, varchar(50):None>
+11:35:23   found mapping: email ==> <StringField, varchar(50):None>
+11:35:23   found mapping: password ==> <StringField, varchar(65):None>
+11:35:23   found mapping: role ==> <IntegerField, bigint:None>
+11:35:23   found mapping: username ==> <StringField, varchar(50):None>
+11:35:23   found mapping: created_time ==> <FloatField, numeric(10,2):None>
+11:35:23   found mapping: card_id ==> <StringField, varchar(50):None>
+11:35:23 found model: Card (table: card)
+11:35:23   found mapping: id ==> <StringField, varchar(50):None>
+11:35:23   found mapping: name ==> <StringField, varchar(50):None>
+11:35:23   found mapping: dept ==> <StringField, varchar(50):None>
+11:35:23   found mapping: type ==> <StringField, varchar(1):None>
+11:35:27 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+11:35:27 rows returned: 1
+11:35:27 当前执行的sql语句: select id, card_id, book_id, admin_id, borrow_date, return_date, deleted from borrow where card_id=? ['0015548997115877339c4961628494483e1416feacbdbd5000']
+11:35:27 rows returned: 4
+11:35:27 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592718220025e8ac4ccb44520b784f29a8411e103000']
+11:35:27 rows returned: 1
+11:35:27 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592757016e0aaca1df2894a12a9a6f09a0c48c25d000']
+11:35:27 rows returned: 1
+11:35:27 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592793516a598249f6aac4eeb81ff098f974c56f4000']
+11:35:27 rows returned: 1
+11:35:27 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592718220025e8ac4ccb44520b784f29a8411e103000']
+11:35:27 rows returned: 1
+11:35:27 infos: [{'book': '算法导论', 'bt': '2019-04-18 22:01:18', 'rt': '2019-04-18 22:07:31', 'de': 1}, {'book': '计算即组成与设计', 'bt': '2019-04-18 22:07:17', 'rt': '', 'de': 0}, {'book': 'C++ Primer', 'bt': '2019-04-18 22:07:22', 'rt': '2019-04-18 22:07:46', 'de': 1}, {'book': '算法导论', 'bt': '2019-04-18 22:07:38', 'rt': '2019-04-18 22:07:48', 'de': 1}]
+11:35:30 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+11:35:30 rows returned: 1
+11:35:30 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+11:35:30 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+11:35:30 rows returned: 7
+11:35:32 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+11:35:32 rows returned: 1
+11:35:32 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+11:35:32 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+11:35:32 rows returned: 7
+11:35:42 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? [-1]
+11:35:42 rows returned: 0
+11:35:45 u: 123
+11:35:45 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where username=? ['xxm']
+11:35:45 rows returned: 1
+11:35:45 user: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+11:35:46 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+11:35:46 rows returned: 1
+11:35:46 当前执行的sql语句: select id, card_id, book_id, admin_id, borrow_date, return_date, deleted from borrow where card_id=? ['0015548997115877339c4961628494483e1416feacbdbd5000']
+11:35:46 rows returned: 4
+11:35:46 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592718220025e8ac4ccb44520b784f29a8411e103000']
+11:35:46 rows returned: 1
+11:35:46 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592757016e0aaca1df2894a12a9a6f09a0c48c25d000']
+11:35:46 rows returned: 1
+11:35:46 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592793516a598249f6aac4eeb81ff098f974c56f4000']
+11:35:46 rows returned: 1
+11:35:46 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592718220025e8ac4ccb44520b784f29a8411e103000']
+11:35:46 rows returned: 1
+11:35:46 infos: [{'book': '算法导论', 'bt': '2019-04-18 22:01:18', 'rt': '2019-04-18 22:07:31', 'de': 1}, {'book': '计算即组成与设计', 'bt': '2019-04-18 22:07:17', 'rt': '', 'de': 0}, {'book': 'C++ Primer', 'bt': '2019-04-18 22:07:22', 'rt': '2019-04-18 22:07:46', 'de': 1}, {'book': '算法导论', 'bt': '2019-04-18 22:07:38', 'rt': '2019-04-18 22:07:48', 'de': 1}]
+11:35:48 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+11:35:48 rows returned: 1
+11:35:48 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+11:35:48 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+11:35:48 rows returned: 7
+11:35:49 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+11:35:49 rows returned: 1
+11:35:49 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+11:35:49 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+11:35:49 rows returned: 7
+13:07:55 found model: Book (table: book)
+13:07:55   found mapping: id ==> <StringField, varchar(50):None>
+13:07:55   found mapping: title ==> <StringField, varchar(50):None>
+13:07:55   found mapping: press ==> <StringField, varchar(50):None>
+13:07:55   found mapping: year ==> <IntegerField, bigint:None>
+13:07:55   found mapping: author ==> <StringField, varchar(50):None>
+13:07:55   found mapping: price ==> <FloatField, real:None>
+13:07:55   found mapping: total ==> <IntegerField, bigint:None>
+13:07:55   found mapping: stock ==> <IntegerField, bigint:None>
+13:07:55 found model: Borrow (table: borrow)
+13:07:55   found mapping: id ==> <StringField, varchar(50):None>
+13:07:55   found mapping: card_id ==> <StringField, varchar(50):None>
+13:07:55   found mapping: book_id ==> <StringField, varchar(50:None>
+13:07:55   found mapping: admin_id ==> <StringField, vaarchar(50):None>
+13:07:55   found mapping: borrow_date ==> <FloatField, numeric(10,2):None>
+13:07:55   found mapping: return_date ==> <FloatField, numeric(10,2):None>
+13:07:55   found mapping: deleted ==> <BooleanField, boolean:None>
+13:07:55 found model: User (table: user)
+13:07:55   found mapping: id ==> <StringField, varchar(50):None>
+13:07:55   found mapping: email ==> <StringField, varchar(50):None>
+13:07:55   found mapping: password ==> <StringField, varchar(65):None>
+13:07:55   found mapping: role ==> <IntegerField, bigint:None>
+13:07:55   found mapping: username ==> <StringField, varchar(50):None>
+13:07:55   found mapping: created_time ==> <FloatField, numeric(10,2):None>
+13:07:55   found mapping: card_id ==> <StringField, varchar(50):None>
+13:07:55 found model: Card (table: card)
+13:07:55   found mapping: id ==> <StringField, varchar(50):None>
+13:07:55   found mapping: name ==> <StringField, varchar(50):None>
+13:07:55   found mapping: dept ==> <StringField, varchar(50):None>
+13:07:55   found mapping: type ==> <StringField, varchar(1):None>
+13:07:56 found model: Book (table: book)
+13:07:56   found mapping: id ==> <StringField, varchar(50):None>
+13:07:56   found mapping: title ==> <StringField, varchar(50):None>
+13:07:56   found mapping: press ==> <StringField, varchar(50):None>
+13:07:56   found mapping: year ==> <IntegerField, bigint:None>
+13:07:56   found mapping: author ==> <StringField, varchar(50):None>
+13:07:56   found mapping: price ==> <FloatField, real:None>
+13:07:56   found mapping: total ==> <IntegerField, bigint:None>
+13:07:56   found mapping: stock ==> <IntegerField, bigint:None>
+13:07:56 found model: Borrow (table: borrow)
+13:07:56   found mapping: id ==> <StringField, varchar(50):None>
+13:07:56   found mapping: card_id ==> <StringField, varchar(50):None>
+13:07:56   found mapping: book_id ==> <StringField, varchar(50:None>
+13:07:56   found mapping: admin_id ==> <StringField, vaarchar(50):None>
+13:07:56   found mapping: borrow_date ==> <FloatField, numeric(10,2):None>
+13:07:56   found mapping: return_date ==> <FloatField, numeric(10,2):None>
+13:07:56   found mapping: deleted ==> <BooleanField, boolean:None>
+13:07:56 found model: User (table: user)
+13:07:56   found mapping: id ==> <StringField, varchar(50):None>
+13:07:56   found mapping: email ==> <StringField, varchar(50):None>
+13:07:56   found mapping: password ==> <StringField, varchar(65):None>
+13:07:56   found mapping: role ==> <IntegerField, bigint:None>
+13:07:56   found mapping: username ==> <StringField, varchar(50):None>
+13:07:56   found mapping: created_time ==> <FloatField, numeric(10,2):None>
+13:07:56   found mapping: card_id ==> <StringField, varchar(50):None>
+13:07:56 found model: Card (table: card)
+13:07:56   found mapping: id ==> <StringField, varchar(50):None>
+13:07:56   found mapping: name ==> <StringField, varchar(50):None>
+13:07:56   found mapping: dept ==> <StringField, varchar(50):None>
+13:07:56   found mapping: type ==> <StringField, varchar(1):None>
+13:07:59 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:07:59 rows returned: 1
+13:07:59 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:07:59 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:07:59 rows returned: 7
+13:08:09 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:08:09 rows returned: 1
+13:08:09 当前执行的sql语句: select id, card_id, book_id, admin_id, borrow_date, return_date, deleted from borrow where card_id=? ['0015548997115877339c4961628494483e1416feacbdbd5000']
+13:08:09 rows returned: 4
+13:08:09 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592718220025e8ac4ccb44520b784f29a8411e103000']
+13:08:09 rows returned: 1
+13:08:09 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592757016e0aaca1df2894a12a9a6f09a0c48c25d000']
+13:08:09 rows returned: 1
+13:08:09 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592793516a598249f6aac4eeb81ff098f974c56f4000']
+13:08:09 rows returned: 1
+13:08:09 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592718220025e8ac4ccb44520b784f29a8411e103000']
+13:08:09 rows returned: 1
+13:08:09 infos: [{'book': '算法导论', 'bt': '2019-04-18 22:01:18', 'rt': '2019-04-18 22:07:31', 'de': 1}, {'book': '计算即组成与设计', 'bt': '2019-04-18 22:07:17', 'rt': '', 'de': 0}, {'book': 'C++ Primer', 'bt': '2019-04-18 22:07:22', 'rt': '2019-04-18 22:07:46', 'de': 1}, {'book': '算法导论', 'bt': '2019-04-18 22:07:38', 'rt': '2019-04-18 22:07:48', 'de': 1}]
+13:08:27 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? [-1]
+13:08:27 rows returned: 0
+13:08:30 u: 123
+13:08:30 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where username=? ['xxm']
+13:08:30 rows returned: 1
+13:08:30 user: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:08:30 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:08:30 rows returned: 1
+13:08:30 当前执行的sql语句: select id, card_id, book_id, admin_id, borrow_date, return_date, deleted from borrow where card_id=? ['0015548997115877339c4961628494483e1416feacbdbd5000']
+13:08:30 rows returned: 4
+13:08:30 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592718220025e8ac4ccb44520b784f29a8411e103000']
+13:08:30 rows returned: 1
+13:08:30 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592757016e0aaca1df2894a12a9a6f09a0c48c25d000']
+13:08:30 rows returned: 1
+13:08:30 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592793516a598249f6aac4eeb81ff098f974c56f4000']
+13:08:30 rows returned: 1
+13:08:30 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592718220025e8ac4ccb44520b784f29a8411e103000']
+13:08:30 rows returned: 1
+13:08:30 infos: [{'book': '算法导论', 'bt': '2019-04-18 22:01:18', 'rt': '2019-04-18 22:07:31', 'de': 1}, {'book': '计算即组成与设计', 'bt': '2019-04-18 22:07:17', 'rt': '', 'de': 0}, {'book': 'C++ Primer', 'bt': '2019-04-18 22:07:22', 'rt': '2019-04-18 22:07:46', 'de': 1}, {'book': '算法导论', 'bt': '2019-04-18 22:07:38', 'rt': '2019-04-18 22:07:48', 'de': 1}]
+13:08:32 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:08:32 rows returned: 1
+13:08:32 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:08:32 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:08:32 rows returned: 7
+13:08:34 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:08:34 rows returned: 1
+13:08:34 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:08:34 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:08:34 rows returned: 7
+13:10:28 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:10:28 rows returned: 1
+13:10:28 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:10:28 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:10:28 rows returned: 7
+13:10:35 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:10:35 rows returned: 1
+13:10:35 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:10:35 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:10:35 rows returned: 7
+13:12:28 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:12:28 rows returned: 1
+13:12:28 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:12:28 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:12:28 rows returned: 7
+13:13:29 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:13:29 rows returned: 1
+13:13:29 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:13:29 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:13:29 rows returned: 7
+13:14:17 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:14:17 rows returned: 1
+13:14:17 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:14:17 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:14:17 rows returned: 7
+13:14:41 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:14:41 rows returned: 1
+13:14:41 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:14:41 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:14:41 rows returned: 7
+13:14:48 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:14:48 rows returned: 1
+13:14:48 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:14:48 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:14:48 rows returned: 7
+13:16:00 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:16:00 rows returned: 1
+13:16:00 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:16:00 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:16:00 rows returned: 7
+13:21:33 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:21:33 rows returned: 1
+13:21:33 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:21:33 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:21:33 rows returned: 7
+13:21:40 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:21:40 rows returned: 1
+13:21:40 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:21:40 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:21:40 rows returned: 7
+13:22:31 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:22:31 rows returned: 1
+13:22:31 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:22:31 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:22:31 rows returned: 7
+13:25:27 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:25:27 rows returned: 1
+13:25:27 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:25:27 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:25:27 rows returned: 7
+13:27:17 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:27:17 rows returned: 1
+13:27:17 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:27:17 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:27:17 rows returned: 7
+13:29:17 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:29:17 rows returned: 1
+13:29:17 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:29:17 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:29:17 rows returned: 7
+13:33:55 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:33:55 rows returned: 1
+13:33:55 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:33:55 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:33:55 rows returned: 7
+13:34:04 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:34:04 rows returned: 1
+13:34:04 当前执行的sql语句: select id, card_id, book_id, admin_id, borrow_date, return_date, deleted from borrow where card_id=? ['0015548997115877339c4961628494483e1416feacbdbd5000']
+13:34:04 rows returned: 4
+13:34:04 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592718220025e8ac4ccb44520b784f29a8411e103000']
+13:34:04 rows returned: 1
+13:34:04 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592757016e0aaca1df2894a12a9a6f09a0c48c25d000']
+13:34:04 rows returned: 1
+13:34:04 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592793516a598249f6aac4eeb81ff098f974c56f4000']
+13:34:04 rows returned: 1
+13:34:04 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book where id=? ['001555592718220025e8ac4ccb44520b784f29a8411e103000']
+13:34:04 rows returned: 1
+13:34:04 infos: [{'book': '算法导论', 'bt': '2019-04-18 22:01:18', 'rt': '2019-04-18 22:07:31', 'de': 1}, {'book': '计算即组成与设计', 'bt': '2019-04-18 22:07:17', 'rt': '', 'de': 0}, {'book': 'C++ Primer', 'bt': '2019-04-18 22:07:22', 'rt': '2019-04-18 22:07:46', 'de': 1}, {'book': '算法导论', 'bt': '2019-04-18 22:07:38', 'rt': '2019-04-18 22:07:48', 'de': 1}]
+13:34:11 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:34:11 rows returned: 1
+13:34:11 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:34:11 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:34:11 rows returned: 7
+13:36:42 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:36:42 rows returned: 1
+13:36:42 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:36:42 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:36:42 rows returned: 7
+13:38:02 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:38:02 rows returned: 1
+13:38:02 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:38:02 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:38:02 rows returned: 7
+13:44:19 当前执行的sql语句: select id, email, password, role, username, created_time, card_id from user where id=? ['0015548749550657318fa7cbd054509b37bab57577a76a7000']
+13:44:19 rows returned: 1
+13:44:19 当前用户: {'id': '0015548749550657318fa7cbd054509b37bab57577a76a7000', 'email': '', 'password': '1be6af03717a0906a774a129ac467fcea8f89849df003548a8039cffffb12baf', 'role': 1, 'username': 'xxm', 'created_time': 1554874955.0619547, 'card_id': '0015548997115877339c4961628494483e1416feacbdbd5000'}
+13:44:19 当前执行的sql语句: select id, title, press, year, author, price, total, stock from book []
+13:44:19 rows returned: 7

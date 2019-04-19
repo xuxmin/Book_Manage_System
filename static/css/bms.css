@@ -1,0 +1,17 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    /* 页脚预留高度,为页脚占位*/
+    padding-bottom: 80px;
+    /** overflow-y属性很重要, 可以撑大内容显示区, 如果不设置这个显示不正常*/
+    overflow-y: hidden;
+}
+
+.fullscreen {
+    min-height: 100%;
+    /** overflow-y属性很重要, 可以撑大内容显示区, 如果不设置这个显示不正常*/
+    overflow-y: hidden;
+}

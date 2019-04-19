@@ -8,6 +8,7 @@ from flask import (
     make_response,
     abort,
     jsonify,
+    g,
 )
 import json
 from models.user import User
@@ -31,6 +32,17 @@ def index():
             return render_template('index_user.html', user=u, card="已拥有借书证")
         else:
             return render_template('index_user.html', user=u, card="未拥有借书证")
+
+
+@main.route("/index", methods=['GET'])
+def index2():
+    u = current_user()
+    log("当前用户:", u)
+    if u is None:
+        abort(403)
+    else:
+        books = Book.find_all()
+        return render_template('index.html', user=u, books=books, card_id=u.card_id)
 
 
 @main.route("/register", methods=['POST'])
@@ -65,44 +77,3 @@ def apply_card():
     form = request.form
     Card.apply_card(u, form)
     return redirect(url_for(".index"))
-
-
-@main.route("/api/borrow", methods=["POST"])
-def borrow():
-    u = current_user()
-    if u is None or u.card_id is None:
-        abort(403)
-    else:
-        # 获取post上来的json数据
-        title = json.loads(request.get_data())
-        log("用户({})尝试借阅书籍({}):".format(u.username, title))
-        if Borrow.borrow_book(title, u) == 1:
-            book = Book.find_one(title=title)
-            return jsonify({"stock": book.stock})
-        else:
-            return jsonify({"stock": '-1'})
-
-
-@main.route("/api/return", methods=["POST"])
-def return_book():
-    u = current_user()
-    if u is None:
-        abort(403)
-    else:
-        # 获取post上来的json数据
-        title = json.loads(request.get_data())
-        log("用户({})尝试归还书籍({}):".format(u.username, title))
-
-        if Borrow.return_book(title, u) == 1:
-            return jsonify({"deleted": 1})
-        else:
-            return jsonify({"deleted": 0})
-
-@main.route("/api/borrowed_books", methods=["POST"])
-def borrowed_books():
-    u = current_user()
-    books = u.borrowed_books()
-    bs = []
-    for b in books:
-        bs.append(b.title)
-    return jsonify(bs)
