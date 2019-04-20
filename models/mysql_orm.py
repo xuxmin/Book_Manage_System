@@ -1,17 +1,19 @@
 import mysql.connector
 
 from utils import log
+import config as conf
+
 
 def create_conn(**kw):
     """
     创建数据库连接并返回
     """
     bms = mysql.connector.connect(
-        host=kw.get('host', 'localhost'),
-        port=kw.get('port', 3306),
-        user=kw.get('port', "root"),    # 数据库用户名
-        passwd=kw.get('password', "xxm19981028"),   # 数据库密码
-        database=kw.get('database', 'bms'),
+        host=kw.get('host', conf.host),
+        port=kw.get('port', conf.port),
+        user=kw.get('port', conf.user),    # 数据库用户名
+        passwd=kw.get('password', conf.password),   # 数据库密码
+        database=kw.get('database', conf.database),
     )
     return bms
 

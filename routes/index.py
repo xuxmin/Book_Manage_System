@@ -67,3 +67,7 @@ def apply_card():
     form = request.form
     Card.apply_card(u, form)
     return redirect(url_for(".index"))
+
+@main.route("/info", methods=['POST'])
+def info():
+    return render_template("info.html")

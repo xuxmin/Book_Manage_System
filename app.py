@@ -15,6 +15,8 @@ from routes.warehouse import main as ware_routes
 from routes.search import main as search_routes
 from routes.api import main as api_routes
 
+import config as conf
+
 app = Flask(__name__)
 
 app.secret_key = secret_key
@@ -28,7 +30,7 @@ app.register_blueprint(api_routes, url_prefix="/api")
 
 if __name__ == '__main__':
     config = dict(
-        debug=True,
+        debug=conf.debug,
         host='0.0.0.0',
         port=3000,
     )
