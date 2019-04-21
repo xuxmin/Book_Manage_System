@@ -1,4 +1,6 @@
 
+# 参考 https://www.cnblogs.com/zhanggl/p/3985678.html
+
 # 安装 MySQL 
 """
 sudo apt-get install mysql-server
@@ -47,4 +49,9 @@ affiliates. Other names may be trademarks of their respective
 owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+"""
+
+# 新建用户guest, 授权bms数据库的所有权限, 可在任何网段访问， 用户名为guest，密码为guest19981028
+"""
+GRANT ALL ON bms.* to guest@'%' IDENTIFIED BY 'guest19981028';
 """

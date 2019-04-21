@@ -4,3 +4,4 @@ user = 'root'
 password = 'xxm19981028'
 database = 'xxm'
 secret_key = 'ssssss'
+debug = True
