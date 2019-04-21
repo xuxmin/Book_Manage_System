@@ -15,9 +15,10 @@ create table user(
     id varchar(50) not null,
     email varchar(50),
     password varchar(65) not null,
-    role int not null,
+    role int(11) not null,
     username varchar(50) not null,
-    created_time real not null, 
+    created_time double not null, 
+    card_id varchar(50),
     primary key(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -50,8 +51,9 @@ create table borrow(
     card_id varchar(50) not null,
     book_id varchar(50) not null,
     admin_id varchar(50) not null,
-    borrow_date real,
-    return_date real,
+    borrow_date double,
+    return_date double,
+    deleted bool,
     primary key (id),
     foreign key (card_id) references card(id),
     foreign key (book_id) references book(id)

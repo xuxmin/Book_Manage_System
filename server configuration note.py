@@ -26,5 +26,21 @@ application = app.app
 # 4. nginx 的配置
 
 
+# 我们需要的服务有
+# Nginx：高性能Web服务器+负责反向代理；
+# Supervisor：监控服务进程的工具；
+# MySQL：数据库服务。
+# 
+
+
 # 将项目文件上传到 github
 
+# 在服务器上克隆项目
+"""
+git clone https: // github.com/xuxmin/Book_Manage_System.git
+"""
+
+# 初始化数据库
+"""
+mysql -u root -p < schema.sql
+"""
