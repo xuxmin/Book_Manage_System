@@ -55,3 +55,9 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 """
 GRANT ALL ON bms.* to guest@'%' IDENTIFIED BY 'guest19981028';
 """
+
+
+# 安装 mysql-connector
+"""
+ pip3 install mysql-connector
+"""

@@ -33,6 +33,10 @@
 # 服务器使用HTTP（超文本传输协议）进行信息交流，这就是人们常把它们称为HTTP服务器的原因。
 # 严格意义上Web服务器只负责处理HTTP协议，用于处理静态页面的内容。而动态内容需要通过WSGI接口交给应用服务器去处理。
 
+# Nginx作用:
+# 负载均衡: 在实际应用中我们通常会让Nginx监听（绑定）80端口，通过多域名或者多个location分发到不同的后端应用。
+# 拦截静态请求，Nginx会拦截到静态请求（静态文件，如图片），并交给自己处理。而动态请求内容将会通过WSGI容器交给Web应用处理;
+# ...
 
 # 首先,要有如下的文件
 
@@ -59,7 +63,19 @@ mysql -u root -p < schema.sql
 # 修改一下服务器的配置文件 config.py
 # 记住调整成生产模式, 而不是开发模式
 
-# wsgi 文件
+
+# 可以先尝试运行一下项目, 使用flask自带的最简单的app.run, 能运行成功就行
+"""
+python3 app.py
+"""
+
+# 虽然像上面这样能够运行成功, 但是实际中并不能这么做
+# 1. 如果关闭了程序, 别人就访问不了了
+# 2. 性能太差
+
+# 所以我们使用一个 gunicorn WSGI容器来运行web应用
+
+# 先准备一个 wsgi 文件
 """
 import sys
 from os.path import abspath
@@ -85,6 +101,31 @@ application = app.app
 # 所以用下面的方法
 """
 # 启动 gunicorn
-gunicorn wsgi --bind 0.0.0.0:3000 --pid /tmp/blog.pid
+➜  Book_Manage_System git:(master) ✗ gunicorn wsgi --bind 0.0.0.0:4000
+[2019-04-22 10:34:30 +0800] [28117] [INFO] Starting gunicorn 19.9.0
+[2019-04-22 10:34:30 +0800] [28117] [INFO] Listening at: http://0.0.0.0:4000 (28117)
+[2019-04-22 10:34:30 +0800] [28117] [INFO] Using worker: sync
+[2019-04-22 10:34:30 +0800] [28120] [INFO] Booting worker with pid: 28120
 """
+# wsgi 是前面写的那个文件, 提供 application
+# 0.0.0.0 表示所有 ip 地址都能访问
+# 4000 表示端口
 
+# 我们使用了 gunicorn 这个后, 还想让web应用能够开机自动运行
+# 挂了也自动运行, 关机仍在运行, 这就需要一个额外的监护程序 supervisor
+# 安装好后在/etc/会生成一个supervisord.conf文件及一个supervisord.d文件目录
+# supervisord.conf是一些默认配置，可自行修改：
+# supervisord.d目录用来存放用户自定义的进程配置
+
+# 我们想要在 /etc/supervisor/conf.d/ 目录下写一个文件 bms.conf 表示这个进程的配置
+# 下面是 bms.conf 文件的内容(后缀必须为.conf)
+"""
+[program:bms]
+command=/usr/local/bin/gunicorn wsgi --bind 0.0.0.0:4000 --pid /tmp/bms.pid
+directory=/root/Book_Manage_System
+autostart=true
+autorestart=true
+"""
+# 配置写在本地，然后在服务器上建一个链接
+# 建立一个软连接  ln -s /root/bms/bms.conf /etc/supervisor/conf.d/bms.conf   全称
+# 还可以将建立软连接的代码写成脚本
