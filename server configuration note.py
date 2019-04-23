@@ -127,5 +127,38 @@ autostart=true
 autorestart=true
 """
 # 配置写在本地，然后在服务器上建一个链接
-# 建立一个软连接  ln -s /root/bms/bms.conf /etc/supervisor/conf.d/bms.conf   全称
+# 建立一个软连接  ln -s /root/Book_Manage_System/bms.conf /etc/supervisor/conf.d/bms.conf   全称
 # 还可以将建立软连接的代码写成脚本
+
+# 使用下面的命令重启 supervisor 即可
+"""
+service supervisor restart
+"""
+# supervisor 其他命令
+"""
+supervisorctl stop xxx          # 停止某一个进程(xxx)
+supervisorctl status            # 查看当前运行的进程列表
+supervisorctl start xxx         # 启动某个进程
+supervisorctl restart xxx       # 重启某个进程
+"""
+
+# 接下来配置 Nginx
+# bms.nginx 应该放在 /etc/nginx/sites-enabled/ 下
+"""
+server {
+    listen 80;
+    location / {
+        proxy_pass http://localhost:4000;
+    }
+}
+"""
+# 建立软连接
+"""
+ln -s /root/Book_Manage_System/bms.nginx /etc/nginx/sites-enabled/bms
+"""
+# 使用 ll 或者 cat 一下来判断是否成功建立链接
+
+# 最后重启 nginx
+"""
+service nginx restart
+"""
