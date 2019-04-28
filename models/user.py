@@ -50,7 +50,7 @@ class User(Model):
             raise ValueError('username format')
 
         pwd = form.get('password', '')
-        if not pwd :
+        if not pwd:
             raise ValueError('passwd format')
 
         u = User.find_all(username=name)
@@ -64,7 +64,9 @@ class User(Model):
         u.from_form(form)
         u.password = u.salted_password(pwd)
         # 将对象保存到数据库中
-        u.save()
+        rows = u.save()
+        if rows != 1:
+            raise IOError("DBError: failed to insert record")
         return u
 
     @classmethod
@@ -82,7 +84,6 @@ class User(Model):
             raise ValueError("password is wrong")
 
         return user
-
 
     def has_card(self):
         if self.card_id == '' or self.card_id == 'None':

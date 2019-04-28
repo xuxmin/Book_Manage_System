@@ -5,16 +5,16 @@ var bindEventPointClick = function () {
     var card_id = card.textContent
 
     bookList.addEventListener('click', function (event) {
+        // 我们可以通过 event.target 来得到被点击的元素
+        var b = event.target
+        log('event.target', b)
+        if (b.textContent != '借书')
+            return
+
         if (card_id == "None") {
             alert("您没有借书证哦")
             return
         }
-        // 我们可以通过 event.target 来得到被点击的元素
-        var b = event.target
-        log('event.target', b)
-
-        if (b.textContent != '借书')
-            return
 
         // 获取该节点的父节点
         var book = b.parentNode.parentNode

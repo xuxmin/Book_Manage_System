@@ -91,3 +91,30 @@ def authenticate():
     session['user_id'] = u.id
     session.permanent = True
     return jsonify(u)
+
+
+# TODO: RestApi 怎么写?
+@main.route('/register', methods=["POST"])
+def register():
+    form = json.loads(request.get_data())
+    user = form.get("username", "")
+    pwd = form.get("password", "")
+
+    if not user:
+        # raise APIValueError('Invalid username.')
+        return jsonify(type='param error', msg='Invalid username')
+    if not pwd:
+        # raise APIValueError('Invalid password.')
+        return jsonify(type='param error', msg='Invalid password')
+    form = {}
+    form['username'] = user
+    form['password'] = pwd
+
+    print("form:", form)
+    try:
+        u = User.register(form)
+    except Exception as res:
+        # raise APIValueError(res)
+        return jsonify(type='register error', msg=res)
+
+    return jsonify(u)

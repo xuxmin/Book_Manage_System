@@ -298,6 +298,7 @@ class Model(dict, metaclass=ModelMetaclass):
         rows = execute(self.__insert__, args)
         if rows != 1:
             log('failed to insert record: affected rows: {}'.format(rows))
+        return rows
 
     def update(self):
         """
