@@ -1,0 +1,26 @@
+{% extends '__base__.html' %}
+
+{% block title %}管理员界面{% endblock %}
+
+{% block content %}
+
+<div class="uk-width-medium-4-4">
+    <h2>管理员界面</h2>
+    <button id="id-show-all" class="uk-button borrow">显示所有借书记录</button>
+    <br>
+    <label class="uk-text-bold uk-text-large">借书记录</label>
+    <table id="book-list" class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+        <tr>
+            <th>借书人</th>
+            <th>书名</th>
+            <th>借阅时间</th>
+            <th>是否归还</th>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block beforebody %}
+<script src="../static/js/admin.js"></script>
+{% endblock %}

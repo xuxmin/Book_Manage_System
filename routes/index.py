@@ -71,3 +71,12 @@ def apply_card():
 @main.route("/info", methods=['POST'])
 def info():
     return render_template("info.html")
+
+
+@main.route("/admin", methods=['GET'])
+def admin():
+    u = current_user()
+    if u is None or u.role != 1:
+        abort(403)
+    else:
+        return render_template("admin.html", user=u)

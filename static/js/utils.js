@@ -2,26 +2,29 @@ var log = function() {
     console.log.apply(console, arguments)
 }
 
-Date.prototype.format = function (fmt) {
-    var o = {
-        "M+": this.getMonth() + 1, //月份 
-        "d+": this.getDate(), //日 
-        "h+": this.getHours(), //小时 
-        "m+": this.getMinutes(), //分 
-        "s+": this.getSeconds(), //秒 
-        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-        "S": this.getMilliseconds() //毫秒 
-    };
-    if (/(y+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    }
-    for (var k in o) {
-        if (new RegExp("(" + k + ")").test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-        }
-    }
-    return fmt;
+function convert(unixtimestamp) {
+    // Months array
+    var months_arr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    // Convert timestamp to milliseconds
+    var date = new Date(unixtimestamp * 1000)
+    // Year
+    var year = date.getFullYear()
+    // Month
+    var month = months_arr[date.getMonth()]
+    // Day
+    var day = date.getDate()
+    // Hours
+    var hours = date.getHours()
+    // Minutes
+    var minutes = "0" + date.getMinutes()
+    // Seconds
+    var seconds = "0" + date.getSeconds()
+    // Display date time in MM-dd-yyyy h:m:s format
+    var convdataTime = month + '-' + day + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
+    return convdataTime
 }
+
+
 var e = function(sel) {
     return document.querySelector(sel)
 }
@@ -88,6 +91,11 @@ var apiRegister = function (form, callback) {
 var apiLogin = function (form, callback) {
     var path = '/api/authenticate'
     ajax('POST', path, form, callback)
+}
+
+var apiGetAllRecord = function (form, callback) {
+    var path = '/admin_api/record'
+    ajax('GET', path, form, callback)
 }
 
 
